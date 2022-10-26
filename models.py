@@ -1,6 +1,6 @@
 # Python
 from enum import Enum
-from uuid import UUID
+from uuid import UUID, uuid4
 from datetime import (
     date, datetime
     )
@@ -20,7 +20,7 @@ class Gender(Enum):
     other = "other"
 
 class UserBase(BaseModel):
-    user_id: UUID = Field(...)
+    user_id: UUID = Field(default_factory=uuid4)
     email: EmailStr = Field(...)
 
 class PasswordMixin(BaseModel):

@@ -25,6 +25,22 @@ from models import Tweet
     tags=["Users"],
 )
 def signup():
+    """
+    Signup
+
+    This path operation registers a user in the app and saves it to the database.
+
+    Parameters:
+        - Request body parameter
+            - user: UserRegister
+
+    Returns a JSON with the basic user information:
+        - user_id : UUID
+        - email: EmailStr
+        - first_name: str
+        - last_name: str
+        - birth_date: date
+    """
     pass
 
 ### Login a user

@@ -23,11 +23,12 @@ class UserBase(BaseModel):
     user_id: UUID = Field(...)
     email: EmailStr = Field(...)
 
-class UserLogin(UserBase):
-    password: str = Field(
+class PasswordMixin(BaseModel):
+        password: str = Field(
         ...,
         min_length=8,
-        max_length=16
+        max_length=16,
+        example="password123",
     )
 
 class User(UserBase):
@@ -53,6 +54,12 @@ class User(UserBase):
             raise ValueError('User must be over 14 years old')
         else:
             return user_birth_date
+
+class UserRegister(User, PasswordMixin):
+    pass
+
+class UserLogin(PasswordMixin, UserBase):
+    pass
 
 
 class Tweet(BaseModel):

@@ -48,6 +48,10 @@ def signup(user: UserRegister = Body(...)):
     with open("users.json", "r+", encoding="utf-8") as f:
         results = json.load(f)
         user_dict = user.dict()
+        gender = str(user_dict["gender"]) # Deleting "Gender." from the Request Body
+        gender_sliced = gender[7:]
+        print(gender_sliced)
+        user_dict["gender"] = gender_sliced
         results.append(user_dict)
         f.seek(0)
         json.dump(results,f,default=str,indent=4)
@@ -137,7 +141,25 @@ def update_user():
     tags=["Tweets"],
     )
 def home():
-    return {"Twitter API": "Working!"}
+    """
+    Home
+
+    This path operation shows all tweets registered in the app.
+
+    Parameters:
+        -
+
+    Returns a JSON list with all the tweets in the app, with the following keys:
+        - tweet_id : UUID
+        - content: str
+        - created_at: datetime
+        - updated_at: Optional[datetime]
+        - by: User
+    """
+
+    with open("tweets.json", "r", encoding="utf-8") as file:
+        results = json.load(file)
+    return results
 
 ### Post a tweet
 @app.post(
@@ -167,6 +189,9 @@ def post_tweet(tweet: Tweet = Body(...)):
     with open("tweets.json", "r+", encoding="utf-8") as f:
         results = json.load(f)
         tweet_dict = tweet.dict()
+        gender = str(tweet_dict["by"]["gender"])
+        gender_sliced = gender[7:] # Deleting "Gender." from the Request Body
+        tweet_dict["by"]["gender"] = gender_sliced
         results.append(tweet_dict)
         f.seek(0)
         json.dump(results,f, default=str, indent=4)

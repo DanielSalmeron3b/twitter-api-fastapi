@@ -50,7 +50,10 @@ def signup(user: UserRegister = Body(...)):
         user_dict = user.dict() # Creating a dict from the Request Body
         user_dict["user_id"] = str(uuid4())
         user_dict["birth_date"] = str(user_dict["birth_date"])
-        user_dict["gender"] = str(user_dict["gender"])
+        gender = str(user_dict["gender"]) # Deleting "Gender." from the Request Body
+        gender_sliced = gender[7:]
+        print(gender_sliced)
+        user_dict["gender"] = gender_sliced
         results.append(user_dict) # Adding the new user to the dict
         file.seek(0) # Moving to the beginning of the file to keep appending elements to it
         json.dump(results, file) # Writing the results in the JSON file/"database"
@@ -77,7 +80,23 @@ def login():
     tags=["Users"],
 )
 def show_all_users():
-    pass
+    """
+    This path operation shows all users registered in the app.
+
+    Parameters:
+        -
+
+    Returns a JSON list with all the users registered in the app, with the following keys:
+        - user_id : UUID
+        - email: EmailStr
+        - first_name: str
+        - last_name: str
+        - birth_date: date
+    """
+
+    with open("users.json", "r", encoding="utf-8") as file:
+        results = json.load(file)
+        return results
 
 ### Show a registered user
 @app.get(

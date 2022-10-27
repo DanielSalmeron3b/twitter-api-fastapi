@@ -43,7 +43,7 @@ class User(UserBase):
         max_length=50,
     )
     birth_date: Optional[date] = Field(example='2000-01-01')
-    gender: Optional[Gender] = Field(default=None, example=Gender.male)
+    gender: Optional[Gender] = Field(default=None, example="female")
 
     # birth_date validation, user must be over 14 years old
     @validator('birth_date')

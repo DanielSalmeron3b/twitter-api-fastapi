@@ -1,29 +1,11 @@
 [
     {
         "password": "password123",
-        "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "user_id": "ee8bef54-58dc-4d80-8809-bab5119c24ae",
         "email": "user@example.com",
-        "first_name": "Daninel",
-        "last_name": "Salmi",
+        "first_name": "string",
+        "last_name": "string",
         "birth_date": "2000-01-01",
-        "gender": "Gender.male"
-    },
-    {
-        "password": "password123",
-        "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "email": "user@example.com",
-        "first_name": "Andrea",
-        "last_name": "Gutierrez",
-        "birth_date": "2000-01-01",
-        "gender": "Gender.female"
-    },
-    {
-        "password": "password1243",
-        "user_id": "1058cfd9-316f-4a2a-b082-75ddc7712257",
-        "email": "user@example.com",
-        "first_name": "Mario",
-        "last_name": "Diaz",
-        "birth_date": "2000-01-01",
-        "gender": "Gender.male"
+        "gender": "female"
     }
 ]

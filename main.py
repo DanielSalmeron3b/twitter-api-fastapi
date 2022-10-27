@@ -45,18 +45,12 @@ def signup(user: UserRegister = Body(...)):
         - last_name: str
         - birth_date: date
     """
-    with open("users.json", "r+", encoding="utf-8") as file:
-        results = json.load(file)
-        user_dict = user.dict() # Creating a dict from the Request Body
-        user_dict["user_id"] = str(uuid4())
-        user_dict["birth_date"] = str(user_dict["birth_date"])
-        gender = str(user_dict["gender"]) # Deleting "Gender." from the Request Body
-        gender_sliced = gender[7:]
-        print(gender_sliced)
-        user_dict["gender"] = gender_sliced
-        results.append(user_dict) # Adding the new user to the dict
-        file.seek(0) # Moving to the beginning of the file to keep appending elements to it
-        json.dump(results, file) # Writing the results in the JSON file/"database"
+    with open("users.json", "r+", encoding="utf-8") as f:
+        results = json.load(f)
+        user_dict = user.dict()
+        results.append(user_dict)
+        f.seek(0)
+        json.dump(results,f,default=str,indent=4)
 
     return user
 
@@ -153,8 +147,31 @@ def home():
     summary="Post a Tweet",
     tags=["Tweets"],
 )
-def post_tweet():
-    pass
+def post_tweet(tweet: Tweet = Body(...)):
+    """
+    Post a Tweet
+
+    This path operation posts a tweet and saves it to the database.
+
+    Parameters:
+        - Request body parameter
+            - tweet: Tweet
+
+    Returns a JSON with the basic tweet information:
+        - tweet_id : UUID
+        - content: str
+        - created_at: datetime
+        - updated_at: Optional[datetime]
+        - by: User
+    """
+    with open("tweets.json", "r+", encoding="utf-8") as f:
+        results = json.load(f)
+        tweet_dict = tweet.dict()
+        results.append(tweet_dict)
+        f.seek(0)
+        json.dump(results,f, default=str, indent=4)
+
+    return tweet
 
 ### Show a tweet
 @app.get(

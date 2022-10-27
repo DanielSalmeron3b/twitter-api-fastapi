@@ -1,1 +1,30 @@
-[]
+[
+    {
+        "tweet_id": "9005f7d9-6871-4b92-a50b-9b157e268037",
+        "content": "The first tweet in history",
+        "created_at": "2022-10-27 13:59:01.564587",
+        "updated_at": "2022-10-27 13:59:53.417000+00:00",
+        "by": {
+            "user_id": "35ed935b-ae16-48e9-a66e-93d7d3ae782d",
+            "email": "salmi@example.com",
+            "first_name": "Daninel",
+            "last_name": "Salmi",
+            "birth_date": "2003-01-01",
+            "gender": "male"
+        }
+    },
+    {
+        "tweet_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "content": "Hola mundo",
+        "created_at": "2022-10-27 15:30:44.003036",
+        "updated_at": "2022-10-27 15:30:53.539000+00:00",
+        "by": {
+            "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "email": "jperez2002@example.com",
+            "first_name": "James",
+            "last_name": "P\u00e9rez",
+            "birth_date": "2003-01-01",
+            "gender": "Gender.male"
+        }
+    }
+]

@@ -1,12 +1,12 @@
 # Python
 import json
 from typing import List
-from uuid import uuid4
+from uuid import UUID, uuid4
 
 # FastAPI
 from fastapi import (
     FastAPI, status,
-    Body
+    Body, Path
     )
 
 app = FastAPI()
@@ -58,7 +58,7 @@ def signup(user: UserRegister = Body(...)):
 
     return user
 
-### Login a user
+### Login a user [Unfinished]
 @app.post(
     path="/login",
     response_model=User,
@@ -96,7 +96,7 @@ def show_all_users():
         results = json.load(file)
         return results
 
-### Show a registered user
+### Show a registered user [Unfinished]
 @app.get(
     path="/users/{user_id}",
     response_model=User,
@@ -104,10 +104,23 @@ def show_all_users():
     summary="Show an User",
     tags=["Users"],
 )
-def show_user():
-    pass
+def show_user(
+    user_id: UUID = Path(
+        ...,
+        title="User Id",
+        description="This is the User id.",
+        example="ee8bef54-58dc-4d80-8809-bab5119c24ae"
+    )
+):
+    with open("users.json", "r", encoding="utf-8") as file:
+        results = json.load(file)
+        if user_id not in results.values():
+            return {"Hey": "This User doesn't exists :("}
+        else:
+            return {"Hey": "This User exists! Yoohooo!!"}
+    
 
-### Delete an existing user
+### Delete an existing user [Unfinished]
 @app.delete(
     path="/users/{user_id}/delete",
     response_model=User,
@@ -118,7 +131,7 @@ def show_user():
 def delete_user():
     pass
 
-### Update an existing user
+### Update an existing user [Unfinished]
 @app.put(
     path="/users/{user_id}/update",
     response_model=User,

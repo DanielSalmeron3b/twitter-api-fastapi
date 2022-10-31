@@ -24,7 +24,7 @@ class UserBase(BaseModel):
     email: EmailStr = Field(...)
 
 class PasswordMixin(BaseModel):
-        password: str = Field(
+    password: str = Field(
         ...,
         min_length=8,
         max_length=16,
